@@ -1,4 +1,5 @@
-import database from "../model/index.js";
+//import database from "../model/index.js";
+import database from "../config/db.js"
 
 class GenericRepository {
 
@@ -7,12 +8,12 @@ class GenericRepository {
     }
 
     async create(object) {
-        database[this.model].create(object);
+        database.models[this.model.name].create(object);
     }
 
     async update(id, objeto) {
 
-        const listUpdates = await database[this.model].update(objeto, { where: {id}});
+        const listUpdates = await database.models[this.model.name].update(objeto, { where: {id}});
 
         if(listUpdates[0] === 0){
             throw new Error("Objeto não atualizado!");
@@ -23,7 +24,7 @@ class GenericRepository {
 
     async findByPk(id){
 
-        const object = await database[this.model].findByPk(id);
+        const object = await database.models[this.model.name].findByPk(id);
 
         if(!object){
             throw new Error("Objeto não encontrado!");
@@ -34,16 +35,14 @@ class GenericRepository {
 
     async findAll(){
         try{
-            console.log("Buscando todos os objetos do modelo: ", Object.keys(database));
-            console.log("Modelo: ", database.models);
-          //  return await database['models'][this.model].findAll();
+            return await database.models[this.model.name].findAll();
         }catch (error){
             console.error("Erro ao buscar todos os objetos: ", error);
         }
     }
 
     async delete(id){
-        return await database[this.model].destroy({ where: { id }});
+        return await database.models[this.model.name].destroy({ where: { id }});
     }
 
 }

@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize"; 
 import sequelize from "../config/db.js";
 
-const Transacao = sequelize.define('transacao', {
+const Transacao = sequelize.define('Transacao', {
     id_transacao : {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     data_transacao : {type: DataTypes.DATE, allowNull: false},
     valor : {type: DataTypes.FLOAT, allowNull: false},
@@ -11,6 +11,8 @@ const Transacao = sequelize.define('transacao', {
 }, {
     tableName: 'transacoes',
     timestamps: false
-});
+}
+
+);
 
 export default Transacao;   
