@@ -6,28 +6,28 @@ class GenericController {
 
     async create(req, res){
         try{
-            const object = await this.service.createTransacao(req, res);
+            const object = await this.service.create(req, res);
             res.status(201).json(object);
         }catch (error){
-            res.status(error.status).json({ message: `${error.message} - falha ao criar o objeto!`});
+            res.status(error.statusCode).json({ message: `${error.message}`});
         }
     }
 
     async update(req, res){
         try{
-            const object = await this.service.updateTransacao(req, res);
-            res.status(200).json(object);
+            await this.service.update(req, res);
+            res.status(200).json({ message: `Atualizado com sucesso!`});
         }catch (error){
-            res.status(error.status).json({ message: `${error.message} - falha ao atualizar o objeto!`});
+            res.status(error.statusCode).json({ message: `${error.message}`});
         }
     }
 
-    async getByPk(req, res){
+    async findByPk(req, res){
         try{
             const object = await this.service.findByPk(req, res);
             res.status(200).json(object);
         }catch(error){
-            res.status(error.status).json({ message: `${error.message} - falha ao obter o objeto!`});
+            res.status(error.statusCode).json({ message: `${error.message}`});
         }
     }
 
@@ -36,16 +36,16 @@ class GenericController {
             const objects = await this.service.findAll();
             res.status(200).json(objects);
         }catch (error){
-            res.status(error.status).json({ message: `${error.message} - falha ao obter a lista de objetos!`})
+            res.status(error.statusCode).json({ message: `${error.message}`})
         }
     }
 
     async delete(req, res){
         try{
-            const object = await this.service.delete(req, res);
-            res.status(200).json(object);
+            await this.service.delete(req, res);
+            res.status(200).json({ message: `Deletado com sucesso!`});
         }catch(error){
-            res.status(error.status).json({ message: `${error.message} - falha ao deletar o objeto!`});
+            res.status(error.statusCode).json({ message: `${error.message}`});
         }
     }
 
