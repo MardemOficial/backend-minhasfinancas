@@ -1,5 +1,6 @@
 //import database from "../model/index.js";
 import database from "../config/db.js"
+import ApiException from "../exception/ApiContextError.js";
 
 class GenericRepository {
 
@@ -16,7 +17,7 @@ class GenericRepository {
         const listUpdates = await database.models[this.model.name].update(objeto, { where: {id}});
 
         if(listUpdates[0] === 0){
-            throw new Error("Objeto não atualizado!");
+            throw new ApiException("Objeto não atualizado!", 404);
         }
 
         return true;
@@ -27,7 +28,7 @@ class GenericRepository {
         const object = await database.models[this.model.name].findByPk(id);
 
         if(!object){
-            throw new Error("Objeto não encontrado!");
+            throw new ApiException("Objeto não encontrado!", 404);
         }
 
         return object;
