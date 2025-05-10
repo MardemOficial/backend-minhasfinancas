@@ -13,27 +13,27 @@ class TransacaoService{
         const transacao = req.body;
 
         if (!transacao) {
-            throw new ApiException("Transação não informada!", 404);
+            throw new ApiException("Transação não informada!", 400);
         }
 
         if(!transacao.data_transacao) {
-            throw new ApiException("Data da transação não informada!", 404);
+            throw new ApiException("Data da transação não informada!", 400);
         }
 
         if(transacao.valor <= 0){
-            throw new ApiException("Valor inválido!", 404);
+            throw new ApiException("Valor inválido!", 400);
         }
 
         if(!transacao.id_subcategoria) {
-            throw new ApiException("Subcategoria não informada!", 404);
+            throw new ApiException("Subcategoria não informada!", 400);
         }
 
         if(!transacao.id_fornecedor) {
-            throw new ApiException("Fornecedor não informado!", 404);
+            throw new ApiException("Fornecedor não informado!", 400);
         }
 
         if(!transacao.id_conta) {
-            throw new ApiException("Conta não informada!", 404);
+            throw new ApiException("Conta não informada!", 400);
         }
 
 
@@ -45,11 +45,11 @@ class TransacaoService{
         const id = req.params.id;
 
         if (!transacao) {
-            throw new ApiException("Transação não informada!", 404);
+            throw new ApiException("Transação não informada!", 400);
         }
 
         if (!id) {
-            throw new ApiException("ID da transação não informado!", 404);
+            throw new ApiException("ID da transação não informado!", 400);
         }
 
         return await this.repository.update(transacao, id);
@@ -59,7 +59,7 @@ class TransacaoService{
         const id = req.params.id;
 
         if (!id) {
-            throw new ApiException("ID da transação não informado!", 404);
+            throw new ApiException("ID da transação não informado!", 400);
         }
 
         return await this.repository.findByPk(id);

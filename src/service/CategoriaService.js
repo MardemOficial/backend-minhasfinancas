@@ -11,11 +11,11 @@ class CategoriaService {
         const categoria = req.body;
 
         if (!categoria) {
-            throw new ApiException("Categoria não informada!", 404);
+            throw new ApiException("Categoria não informada!", 400);
         }
 
         if (!categoria.descricao_categoria) {
-            throw new ApiException("Descrição da categoria não informado!", 404);
+            throw new ApiException("Descrição da categoria não informado!", 400);
         }
 
         return await this.categoriaRepository.create(categoria);
@@ -27,11 +27,11 @@ class CategoriaService {
         const categoria = req.body;
 
         if (!categoria) {
-            throw new ApiException("Categoria não informada!", 404);
+            throw new ApiException("Categoria não informada!", 400);
         }
 
         if (!id) {
-            throw new ApiException("ID da categoria não informado!", 404);
+            throw new ApiException("ID da categoria não informado!", 400);
         }
 
         return await this.categoriaRepository.update(Number(id), categoria);
@@ -41,13 +41,13 @@ class CategoriaService {
         const id = req.params.id;
 
         if (!id) {
-            throw new ApiException("ID da categoria não informado!", 404);
+            throw new ApiException("ID da categoria não informado!", 400);
         }
 
         return await this.categoriaRepository.findByPk(Number(id));
     }
 
-    async findAll(req, res){
+    async findAll(){
         return await this.categoriaRepository.findAll();
     }
 
@@ -55,7 +55,7 @@ class CategoriaService {
         const id = req.params.id;
 
         if (!id) {
-            throw new ApiException("ID da categoria não informado!", 404);
+            throw new ApiException("ID da categoria não informado!", 400);
         }
 
         return await this.categoriaRepository.delete(id);
