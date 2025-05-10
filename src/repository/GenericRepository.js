@@ -17,7 +17,7 @@ class GenericRepository {
         const listUpdates = await database.models[this.model.name].update(objeto, { where: {id}});
 
         if(listUpdates[0] === 0){
-            throw new ApiException("Objeto não atualizado!", 404);
+            throw new ApiException("Objeto não atualizado!", 400);
         }
 
         return true;
@@ -25,10 +25,10 @@ class GenericRepository {
 
     async findByPk(id){
 
-        const object = await database.models[this.model.name].findByPk(id);
+        const object = await database.models[this.model.name].findByPk(id,{ include: {all: true}});
 
         if(!object){
-            throw new ApiException("Objeto não encontrado!", 404);
+            throw new ApiException("Objeto não encontrado!", 400);
         }
 
         return object;
@@ -36,7 +36,7 @@ class GenericRepository {
 
     async findAll(){
         try{
-            return await database.models[this.model.name].findAll();
+            return await database.models[this.model.name].findAll({include: {all: true}, limit: 50});
         }catch (error){
             console.error("Erro ao buscar todos os objetos: ", error);
         }
