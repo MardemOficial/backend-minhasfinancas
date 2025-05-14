@@ -47,8 +47,8 @@ class SubcategoriaService {
         return await this.subcategoriaRepository.findByPk(Number(id));
     }
 
-    async findAll() {
-        return await this.subcategoriaRepository.findAll();
+    async findAll(req, res) {
+        return await this.subcategoriaRepository.findAll(req, res);
     }
 
     async delete(req, res) {
