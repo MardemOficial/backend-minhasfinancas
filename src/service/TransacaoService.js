@@ -65,8 +65,8 @@ class TransacaoService{
         return await this.repository.findByPk(id);
     }
 
-    async findAll() {
-        return await this.repository.findAll();
+    async findAll(req, res) {
+        return await this.repository.findAll(req, res);
     }
 
     async delete(req, res){

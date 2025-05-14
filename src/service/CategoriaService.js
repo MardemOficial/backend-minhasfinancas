@@ -47,8 +47,8 @@ class CategoriaService {
         return await this.categoriaRepository.findByPk(Number(id));
     }
 
-    async findAll(){
-        return await this.categoriaRepository.findAll();
+    async findAll(req, res){
+        return await this.categoriaRepository.findAll(req, res);
     }
 
     async delete(req, res){

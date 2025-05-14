@@ -33,7 +33,7 @@ class GenericController {
 
     async getAll(req, res){
         try{
-            const objects = await this.service.findAll();
+            const objects = await this.service.findAll(req, res);
             res.status(200).json(objects);
         }catch (error){
             res.status(error.statusCode).json({ message: `${error.message}`})
