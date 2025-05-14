@@ -1,4 +1,4 @@
-import { Sequelize, DataTypes } from "sequelize"; 
+import { DataTypes } from "sequelize"; 
 import sequelize from "../config/db.js";
 import Categoria from "./Categoria.js";
 
@@ -11,6 +11,5 @@ const Subcategoria = sequelize.define('subcategoria', {
 }
 );
 
-Subcategoria.hasOne(Categoria, { as: 'categoria', foreignKey: 'id'});
-
+Subcategoria.belongsTo(Categoria, { as: 'categoria', foreignKey: 'id_categoria' });
 export default Subcategoria;
