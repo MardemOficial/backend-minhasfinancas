@@ -66,7 +66,22 @@ class TransacaoService{
     }
 
     async findAll(req, res) {
-        return await this.repository.findAll(req, res);
+        try{
+            
+            let {page = 1, limit = 10} = req.query;
+            
+            page = parseInt(page);
+            limit = parseInt(limit);
+
+            if(page < 1 || limit < 1){
+                throw new ApiException("Página ou limite inválido!", 400);
+            }
+
+            return await this.repository.findAll(req, res);
+
+        }catch (error){
+            console.error("Erro ao buscar todos os objetos: ", error);
+        }
     }
 
     async delete(req, res){
