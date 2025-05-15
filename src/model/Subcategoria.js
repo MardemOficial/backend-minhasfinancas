@@ -7,9 +7,14 @@ const Subcategoria = sequelize.define('subcategoria', {
     descricao_subcategoria : {type: DataTypes.STRING, allowNull: false},
 }, {
     tableName: 'subcategorias',
-    timestamps: false
+    timestamps: false,
+    defaultScope: { 
+        attributes: { exclude: ['id_categoria'] }
+    },
 }
 );
 
 Subcategoria.belongsTo(Categoria, { as: 'categoria', foreignKey: 'id_categoria' });
+Categoria.hasMany(Subcategoria , { as: 'subcategorias', foreignKey: 'id_categoria' });
+
 export default Subcategoria;

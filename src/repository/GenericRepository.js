@@ -39,7 +39,7 @@ class GenericRepository {
             const {page = 1, limit = 10} = req.query;
 
             return await database.models[this.model.name].findAll(
-                {include: {all: true}, limit, offset: (page - 1) * limit});
+                {include: {all: true, nested: true}, limit: limit, offset: (page - 1) * limit});
         }catch (error){
             console.error("Erro ao buscar todos os objetos: ", error);
         }
