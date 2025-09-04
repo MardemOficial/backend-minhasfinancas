@@ -3,9 +3,9 @@ import GenericRepository from "./GenericRepository.js";
 
 class ContaRepository extends GenericRepository{
 
-    constructor(){
-        super(Conta);
-    }
+  constructor(){
+    super(Conta);
+  }
 };
 
 export default ContaRepository;

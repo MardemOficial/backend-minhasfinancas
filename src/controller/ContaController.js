@@ -3,9 +3,9 @@ import GenericController from './GenericController.js';
 
 class ContaController extends GenericController{
 
-    constructor(){
-        super(new ContaService());
-    };
+  constructor(){
+    super(new ContaService());
+  };
 }
 
 export default ContaController;
