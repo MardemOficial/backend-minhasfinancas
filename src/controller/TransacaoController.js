@@ -3,9 +3,9 @@ import GenericController from "./GenericController.js";
 
 class TransacaoController extends GenericController{
 
-    constructor(){
-        super(new TransacaoService());
-    }
+  constructor(){
+    super(new TransacaoService());
+  }
 }
 
 export default TransacaoController;

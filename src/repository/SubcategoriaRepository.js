@@ -3,9 +3,9 @@ import Subcategoria from "../model/Subcategoria.js";
 
 class SubcategoriaRepository extends GenericRepository {
 
-    constructor() {
-        super(Subcategoria);
-    }
+  constructor() {
+    super(Subcategoria);
+  }
 
 };
 
